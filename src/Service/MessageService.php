@@ -19,15 +19,13 @@ class MessageService
     {
         $faker = Factory::create();
 
-        for ($i=0; $i<$numberOfUsers; $i++) {
-            $message = json_encode([
+        $message = json_encode([
                 'sender' => $faker->companyEmail,
                 'receiver' => $faker->email,
                 'message' => $faker->text,
-            ]);
+        ]);
 
-            $this->messagingProducer->publish($message);
-        }
+        $this->messagingProducer->publish($message);
 
         return new JsonResponse(['status' => 'Sent!']);
     }
